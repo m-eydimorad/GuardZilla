@@ -1,0 +1,14 @@
+﻿Backend: GoLang
+DB: Postgres Sql
+apis:
+-user gate lock (Get,Post,Delete)
+Model:  username,comment,status,date
+-gate status (Get) 
+Return IsLock,[user gate lock]
+
+Mobile app: react native
+register form:
+input:username
+
+lock/unlock form:
+lock toggle
