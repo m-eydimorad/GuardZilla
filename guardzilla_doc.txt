@@ -1,6 +1,7 @@
 ﻿Backend: GoLang
 DB: Postgres Sql
 apis:
+-user check (username) : bool
 -user gate lock (Get,Post,Delete)
 Model:  username,comment,status,date
 -gate status (Get) 
@@ -12,3 +13,6 @@ input:username
 
 lock/unlock form:
 lock toggle
+
+admin form:
+[user gate lock]
