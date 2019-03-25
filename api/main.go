@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../api/handlers"
+	"./handlers"
 	"github.com/gorilla/mux"
 	"net/http"
 )
