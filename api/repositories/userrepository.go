@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	models "../Models"
+	models "../models"
 )
 
 func GetAllUsers() *[]models.User {
