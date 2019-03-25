@@ -1,0 +1,24 @@
+Update node_modules\react-native\scripts\launchPackager.bat file.
+@echo off
+title Metro Bundler
+call .packager.bat
+
+// delete this line
+node "%~dp0..\cli.js" start 
+
+Add this line
+node "%~dp0..\cli.js" start --projectRoot ../../../ 
+
+pause
+exit
+We are giving project root path to Metro instance here,
+
+Or in \node_modules\@react-native-community\cli\build\commands\runAndroid\runAndroid.js edit this,
+const procConfig = {
+
+    // delete this line    
+    cwd: scriptsDir
+
+    // add this line
+    cwd: process.cwd()
+};
