@@ -5,6 +5,6 @@ import (
 )
 
 func Setup(router *mux.Router) {
-	router.HandleFunc("/user", GetAllUsers)
-	router.HandleFunc("/user/{username}", GetUser)
+	router.HandleFunc("/users", GetAllUsers)
+	router.HandleFunc("/users/{username}", GetUser)
 }
