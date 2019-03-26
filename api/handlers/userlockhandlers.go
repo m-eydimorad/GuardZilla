@@ -19,7 +19,7 @@ func GetUserLockByEnviroment(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	userId, _ := strconv.Atoi(vars["userid"])
 	environmentid, _ := strconv.Atoi(vars["environmentid"])
-	userlocks := repositories.GetUserLockByEnvironmentId(userId, environmentid)
+	userlocks := repositories.GetUserLockByUserIdEnvironmentId(userId, environmentid)
 	json.NewEncoder(w).Encode(userlocks)
 }
 func PostUserLock(w http.ResponseWriter, r *http.Request) {

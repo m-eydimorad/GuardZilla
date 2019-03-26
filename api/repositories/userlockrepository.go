@@ -13,7 +13,7 @@ func DeleteUserLock(userId int, environmentid int) bool {
 }
 
 func AddOrUpdateUserLock(userlock models.UserLock) bool {
-	isExists := GetUserLockByEnvironmentId(userlock.UserId, userlock.EnvironmentId) != nil
+	isExists := GetUserLockByUserIdEnvironmentId(userlock.UserId, userlock.EnvironmentId) != nil
 	if !isExists {
 		addUserLock(userlock)
 	} else {
@@ -45,7 +45,7 @@ func GetUserLock(userid int) *[]models.UserLock {
 	}
 	return &userlockList
 }
-func GetUserLockByEnvironmentId(userid int, environmentId int) *models.UserLock {
+func GetUserLockByUserIdEnvironmentId(userid int, environmentId int) *models.UserLock {
 	userlocks := GetAllUserLocks()
 
 	for _, a := range *userlocks {
@@ -55,6 +55,17 @@ func GetUserLockByEnvironmentId(userid int, environmentId int) *models.UserLock 
 	}
 	return nil
 }
+func GetUserLockByEnvironmentId(environmentId int) *[]models.UserLock {
+	userlocks := GetAllUserLocks()
+	userlockList := make([]models.UserLock, 0)
+	for _, a := range *userlocks {
+		if a.EnvironmentId == environmentId {
+			userlockList = append(userlockList, a)
+		}
+	}
+	return &userlockList
+}
+
 func GetAllUserLocks() *[]models.UserLock {
 	rows, err := db.Query("SELECT userid,environmentid,comment FROM userlock")
 	if err != nil {
