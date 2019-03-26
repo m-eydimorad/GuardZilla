@@ -7,8 +7,8 @@ import (
 func Setup(router *mux.Router) {
 	router.HandleFunc("/users", GetAllUsers).Methods("Get")
 	router.HandleFunc("/users/{username}", GetUser).Methods("Get")
-	router.HandleFunc("/userlock/{username}", GetUserLock).Methods("Get")
-	router.HandleFunc("/userlock/{username}/{environmentid}", GetUserLockByEnviroment).Methods("Get")
+	router.HandleFunc("/userlock/{userid}", GetUserLock).Methods("Get")
+	router.HandleFunc("/userlock/{userid}/{environmentid}", GetUserLockByEnviroment).Methods("Get")
 	router.HandleFunc("/userlock", PostUserLock).Methods("Post")
-	router.HandleFunc("/userlock", DeleteUserLock).Methods("Delete")
+	router.HandleFunc("/userlock/{userid}/{environmentid}", DeleteUserLock).Methods("Delete")
 }
