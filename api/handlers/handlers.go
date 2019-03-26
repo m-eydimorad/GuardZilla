@@ -9,5 +9,5 @@ func Setup(router *mux.Router) {
 	router.HandleFunc("/users/{username}", GetUser).Methods("Get")
 	router.HandleFunc("/userlock/{userid}/{enviromentid}", GetUserLock).Methods("Get")
 	router.HandleFunc("/userlock", PostUserLock).Methods("Post")
-
+	router.HandleFunc("/userlock", DeleteUserLock).Methods("Delete")
 }

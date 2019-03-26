@@ -5,8 +5,8 @@ import (
 	"strings"
 )
 
-func ExecuteInsertSqlStatement(insertSqlStatemenet string,values []interface{}) bool{
-	sqlStr :=insertSqlStatemenet+ " VALUES "
+func ExecuteInsertSqlStatement(insertSqlStatemenet string, values []interface{}) bool {
+	sqlStr := insertSqlStatemenet + " VALUES "
 	sqlStr += "(?, ?, ?),"
 	//trim the last ,
 	sqlStr = strings.TrimSuffix(sqlStr, ",")
@@ -18,6 +18,18 @@ func ExecuteInsertSqlStatement(insertSqlStatemenet string,values []interface{}) 
 		return false
 	}
 	//format all vals at once
+	_, error := stmt.Exec(values...)
+	if error != nil {
+		return false
+	}
+	return true
+}
+func ExecuteSqlStatement(sqlStatemenet string, values []interface{}) bool {
+	sqlStr := sqlStatemenet
+	stmt, err := db.Prepare(sqlStr)
+	if err != nil {
+		return false
+	}
 	_, error := stmt.Exec(values...)
 	if error != nil {
 		return false
