@@ -3,10 +3,11 @@ package repositories
 import (
 	"../models"
 	"log"
+	"time"
 )
 
 func DeleteUserLock(userId int, environmentid int) bool {
-	vals := []interface{}{}
+	var vals []interface{}
 	vals = append(vals, &userId, &environmentid)
 	result := ExecuteSqlStatement("delete FROM userlock where userid=$1 and environmentid=$2", vals)
 	return result
@@ -23,16 +24,16 @@ func AddOrUpdateUserLock(userlock models.UserLock) bool {
 }
 
 func addUserLock(userlock models.UserLock) bool {
-	vals := []interface{}{}
-	vals = append(vals, &userlock.UserId, &userlock.EnvironmentId, &userlock.Comment)
-	result := ExecuteInsertSqlStatement("INSERT INTO userlock(userid, environmentid, comment)", vals)
+	var vals []interface{}
+	vals = append(vals, &userlock.UserId, &userlock.EnvironmentId, &userlock.Comment, time.Now(), time.Now())
+	result := ExecuteInsertSqlStatement("INSERT INTO userlock(userid, environmentid, comment,insertdate,updatedate)", vals)
 	return result
 }
 
 func updateUserLock(userlock models.UserLock) bool {
 	vals := []interface{}{}
-	vals = append(vals, &userlock.Comment, &userlock.UserId, &userlock.EnvironmentId)
-	result := ExecuteSqlStatement("update userlock set comment=$1 where userid=$2 and environmentid=$3", vals)
+	vals = append(vals, &userlock.Comment, time.Now(), &userlock.UserId, &userlock.EnvironmentId)
+	result := ExecuteSqlStatement("update userlock set comment=$1,updatedate=$2 where userid=$3 and environmentid=$4", vals)
 	return result
 }
 func GetUserLock(userid int) *[]models.UserLock {
