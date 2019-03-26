@@ -15,8 +15,8 @@ func GetUser(w http.ResponseWriter, r *http.Request){
 }
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request){
-	mockUsers :=repositories.GetAllUsers()
-	json.NewEncoder(w).Encode(mockUsers)
+	allUsers :=repositories.GetAllUsers()
+	json.NewEncoder(w).Encode(allUsers)
 }
 
 
