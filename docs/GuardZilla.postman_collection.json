@@ -1,0 +1,237 @@
+{
+	"id": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+	"name": "GuardZilla",
+	"description": "",
+	"order": [
+		"3e9b6399-dbcc-f120-4895-9d686a17de5b",
+		"52ab0e81-10ba-633d-d3bf-6318ba313d72",
+		"1e340056-a097-0a2d-8899-213b9e441ae5",
+		"4ed1b335-e0c8-6a39-0dc9-e81f312d010f",
+		"955ad946-c02a-d13b-5ff7-16b373929a8e",
+		"18e06a40-c6fc-5bea-3fdb-25c94d810102",
+		"7c35e784-fa12-2997-abd6-ce2cc66f0251"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1553622042464,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "18e06a40-c6fc-5bea-3fdb-25c94d810102",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8099/userlock/1/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+			"data": [],
+			"dataMode": "raw",
+			"name": "get user lock by user id and environmnet id",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1553622194739,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "1e340056-a097-0a2d-8899-213b9e441ae5",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8099/userlock",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+			"data": [],
+			"dataMode": "raw",
+			"name": "post userlock",
+			"description": "get userid & environmentid & comment and lock environment for that user with comment",
+			"descriptionFormat": "html",
+			"time": 1553622122633,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\"UserId\":1,\"EnvironmentId\":1,\"Comment\":\"demo\"}"
+		},
+		{
+			"id": "3e9b6399-dbcc-f120-4895-9d686a17de5b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8099/users",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+			"data": [],
+			"dataMode": "raw",
+			"name": "get users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1553622229673,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "4ed1b335-e0c8-6a39-0dc9-e81f312d010f",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8099/userlock/1/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+			"data": [],
+			"dataMode": "raw",
+			"name": "delete userlock",
+			"description": "کد یوزر و کد محیط رو میگیره و قفل اون کاربر برای اون محیط رو باز میکنه",
+			"descriptionFormat": "html",
+			"time": 1553622150014,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "52ab0e81-10ba-633d-d3bf-6318ba313d72",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8099/users/m_eydimorad",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+			"data": [],
+			"dataMode": "raw",
+			"name": "get user by username",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1553622257337,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "7c35e784-fa12-2997-abd6-ce2cc66f0251",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8099/environmentstatus/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1553622391505,
+			"name": "get status by environment id",
+			"description": "کد محیط رو میگیره وضعیتش رو برمیگردونه\nاگر یک یا چند نفر محیط رو لاک کرده باشن، فالس برمیگردونه و لیست یوزرهایی که لاک کردن رو برمیگردونه",
+			"collectionId": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+			"responses": [],
+			"rawModeData": "{\"UserId\":1,\"EnvironmentId\":1,\"Comment\":\"demo\"}"
+		},
+		{
+			"id": "955ad946-c02a-d13b-5ff7-16b373929a8e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8099/userlock/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a7226133-d73e-b1b0-79e3-801a21511d3f",
+			"data": [],
+			"dataMode": "raw",
+			"name": "get user lock by user id",
+			"description": "کد یوزر رو میگیره و محیط هایی که این یوزر قفل کرده رو برمیگردونه",
+			"descriptionFormat": "html",
+			"time": 1553622179095,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		}
+	]
+}

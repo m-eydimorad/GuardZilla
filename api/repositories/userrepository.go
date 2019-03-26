@@ -6,7 +6,7 @@ import (
 )
 
 func GetAllUsers() *[]models.User {
-	rows, err := db.Query(`SELECT "Id", "Username" FROM "Users"`)
+	rows, err := db.Query("SELECT Id, Username FROM Users")
 	if err != nil {
 		log.Fatal(err)
 	}
