@@ -1,12 +1,11 @@
 package models
 
 type User struct {
-	Id          string    `json:"Id"`
-	Name      string    `json:"Name"`
+	Id          int    `json:"Id"`
+	Username      string    `json:"Username"`
 }
 
+func NewUser() *User {
 
-func NewUser(id string, name string) *User {
-
-	return &User{Id: id, Name: name}
+	return &User{Id: 0}
 }

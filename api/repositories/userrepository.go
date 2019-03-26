@@ -1,36 +1,39 @@
 package repositories
 
 import (
-	models "../models"
+	"../models"
+	"log"
 )
 
 func GetAllUsers() *[]models.User {
-	return mockUsers()
+	rows, err := db.Query("SELECT id,username FROM users")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+	users := make([]models.User, 0)
+	for rows.Next() {
+		user:=models.NewUser()
+		err := rows.Scan(&user.Id, &user.Username)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		users=append(users,*user)
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &users
 }
 
 func GetUser(username string) *models.User {
 	users:=GetAllUsers()
 	for _, a := range *users {
-		if a.Name == username {
+		if a.Username == username {
 			return &a
 		}
 	}
 	return nil
-}
-
-func mockUsers() *[]models.User {
-
-	mockUsers := make([]models.User, 4)
-
-	user1 := models.NewUser("1","m_eydimorad")
-	user2 := models.NewUser("2","a_hojati")
-	user3 := models.NewUser("3","ha_mousavi")
-	user4 := models.NewUser("4","p_taghizade")
-
-	mockUsers[0] = *user1
-	mockUsers[1] = *user2
-	mockUsers[2] = *user3
-	mockUsers[3] = *user4
-	return &mockUsers
-
 }
