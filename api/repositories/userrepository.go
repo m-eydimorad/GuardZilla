@@ -6,20 +6,20 @@ import (
 )
 
 func GetAllUsers() *[]models.User {
-	rows, err := db.Query("SELECT id,username FROM users")
+	rows, err := db.Query(`SELECT "Id", "Username" FROM "Users"`)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer rows.Close()
 	users := make([]models.User, 0)
 	for rows.Next() {
-		user:=models.NewUser()
+		user := models.NewUser()
 		err := rows.Scan(&user.Id, &user.Username)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		users=append(users,*user)
+		users = append(users, *user)
 	}
 	err = rows.Err()
 	if err != nil {
@@ -29,7 +29,7 @@ func GetAllUsers() *[]models.User {
 }
 
 func GetUser(username string) *models.User {
-	users:=GetAllUsers()
+	users := GetAllUsers()
 	for _, a := range *users {
 		if a.Username == username {
 			return &a
