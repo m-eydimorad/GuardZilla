@@ -6,6 +6,7 @@ type UserLockViewModel struct {
 	Comment      string    `json:"Comment"`
 	Firstname      string    `json:"Firstname"`
 	Lastname      string    `json:"Lastname"`
+	Environment string `json:"Environment"`
 }
 func NewUserLockViewModel() *UserLockViewModel {
 
