@@ -39,7 +39,6 @@ func PostUserLock(w http.ResponseWriter, r *http.Request) {
 
 func DeleteUserLock(w http.ResponseWriter, r *http.Request) {
 	// Read body
-
 	vars := mux.Vars(r)
 	userId, _ := strconv.Atoi(vars["userid"])
 	environmentid, _ := strconv.Atoi(vars["environmentid"])
