@@ -20,9 +20,13 @@ class Login extends Component {
                     <View style={{ height: 300, width: "100%" }} >
                         <TextInput style={stylesOfLogin.txtUserName} placeholder="نام کاربری ایرانت" />
                         <TextInput style={stylesOfLogin.txtPassword} placeholder="رمز عبور" secureTextEntry={true} />
-                        <Button color="#15A085" width="20%" style={stylesOfLogin.btn} title="ورود" onPress={() => { }} />
+                        <Button color="#15A085" width="20%" style={stylesOfLogin.btn} title="ورود" onPress={() => { 
+                            this.props.navigation.navigate('environmentStatus');
+                       
+                        }} />
                     </View>
                 </View>
+                
            
         );
     }
