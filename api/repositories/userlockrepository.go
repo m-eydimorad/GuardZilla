@@ -69,7 +69,7 @@ func GetUserLockByEnvironmentId(environmentId int) *[]viewmodels.UserLockViewMod
 }
 
 func GetAllUserLocks() *[]viewmodels.UserLockViewModel {
-	rows, err := db.Query("SELECT userid,environmentid,comment,users.firstname,users.lastname FROM userlock inner join users on userlock.userid=users.id")
+	rows, err := db.Query("SELECT userid,environmentid,comment,users.firstname,users.lastname,environment.name FROM userlock inner join users on userlock.userid=users.id inner join environment on userlock.environmentid=environment.id")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -77,7 +77,7 @@ func GetAllUserLocks() *[]viewmodels.UserLockViewModel {
 	userlocks := make([]viewmodels.UserLockViewModel, 0)
 	for rows.Next() {
 		userlock := viewmodels.NewUserLockViewModel()
-		err := rows.Scan(&userlock.UserId, &userlock.EnvironmentId, &userlock.Comment,&userlock.Firstname,&userlock.Lastname)
+		err := rows.Scan(&userlock.UserId, &userlock.EnvironmentId, &userlock.Comment,&userlock.Firstname,&userlock.Lastname,&userlock.Environment)
 		if err != nil {
 			log.Fatal(err)
 		}
