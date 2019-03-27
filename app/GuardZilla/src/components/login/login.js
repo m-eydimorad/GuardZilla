@@ -6,6 +6,7 @@ import {
 }
     from 'react-native';
 //import stylesOfLogin from './loginStyles';
+//import Header from './src/component/header/header';
 
 class Login extends Component {
     render() {
@@ -13,6 +14,7 @@ class Login extends Component {
            
            
                 <View style={stylesOfLogin.container}>
+                {/* <Header title="ورود"/> */}
                     <Text style={stylesOfLogin.welcome}>Welcome to GuardZilla :)</Text>
                     <Text style={stylesOfLogin.welcome}>اعلام وضعیت نتسا در سرور تست</Text>
                     <View style={{ height: 300, width: "100%" }} >
