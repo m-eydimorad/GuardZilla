@@ -8,8 +8,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "native-base": "^2.12.1",
     "react": "16.8.3",
-    "react-native": "0.59.1"
+    "react-native": "0.59.1",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-navigation": "^3.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
