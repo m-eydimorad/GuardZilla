@@ -1,15 +1,11 @@
 package viewmodels
 
-import (
-	"../models"
-)
-
 type EnvironmentStatusViewModel struct {
 	Status        bool              `json:"Status"`
-	LockedByUsers []models.UserLock `json:"LockedByUsers"`
+	LockedByUsers []UserLockViewModel `json:"LockedByUsers"`
 }
 
-func NewEnvironmentStatusViewModel(status bool, lockedByUsers []models.UserLock) *EnvironmentStatusViewModel {
+func NewEnvironmentStatusViewModel(status bool, lockedByUsers []UserLockViewModel) *EnvironmentStatusViewModel {
 	return &EnvironmentStatusViewModel{
 		Status:        status,
 		LockedByUsers: lockedByUsers,

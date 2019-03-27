@@ -4,6 +4,7 @@ import (
 	"../models"
 	"log"
 	"time"
+	"../viewmodels"
 )
 
 func DeleteUserLock(userId int, environmentid int) bool {
@@ -36,9 +37,9 @@ func updateUserLock(userlock models.UserLock) bool {
 	result := ExecuteSqlStatement("update userlock set comment=$1,updatedate=$2 where userid=$3 and environmentid=$4", vals)
 	return result
 }
-func GetUserLock(userid int) *[]models.UserLock {
+func GetUserLock(userid int) *[]viewmodels.UserLockViewModel {
 	userlocks := GetAllUserLocks()
-	userlockList := make([]models.UserLock, 0)
+	userlockList := make([]viewmodels.UserLockViewModel, 0)
 	for _, a := range *userlocks {
 		if a.UserId == userid {
 			userlockList = append(userlockList, a)
@@ -46,7 +47,7 @@ func GetUserLock(userid int) *[]models.UserLock {
 	}
 	return &userlockList
 }
-func GetUserLockByUserIdEnvironmentId(userid int, environmentId int) *models.UserLock {
+func GetUserLockByUserIdEnvironmentId(userid int, environmentId int) *viewmodels.UserLockViewModel {
 	userlocks := GetAllUserLocks()
 
 	for _, a := range *userlocks {
@@ -56,9 +57,9 @@ func GetUserLockByUserIdEnvironmentId(userid int, environmentId int) *models.Use
 	}
 	return nil
 }
-func GetUserLockByEnvironmentId(environmentId int) *[]models.UserLock {
+func GetUserLockByEnvironmentId(environmentId int) *[]viewmodels.UserLockViewModel {
 	userlocks := GetAllUserLocks()
-	userlockList := make([]models.UserLock, 0)
+	userlockList := make([]viewmodels.UserLockViewModel, 0)
 	for _, a := range *userlocks {
 		if a.EnvironmentId == environmentId {
 			userlockList = append(userlockList, a)
@@ -67,16 +68,16 @@ func GetUserLockByEnvironmentId(environmentId int) *[]models.UserLock {
 	return &userlockList
 }
 
-func GetAllUserLocks() *[]models.UserLock {
-	rows, err := db.Query("SELECT userid,environmentid,comment FROM userlock")
+func GetAllUserLocks() *[]viewmodels.UserLockViewModel {
+	rows, err := db.Query("SELECT userid,environmentid,comment,users.firstname,users.lastname FROM userlock inner join users on userlock.userid=users.id")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer rows.Close()
-	userlocks := make([]models.UserLock, 0)
+	userlocks := make([]viewmodels.UserLockViewModel, 0)
 	for rows.Next() {
-		userlock := models.NewUserLock()
-		err := rows.Scan(&userlock.UserId, &userlock.EnvironmentId, &userlock.Comment)
+		userlock := viewmodels.NewUserLockViewModel()
+		err := rows.Scan(&userlock.UserId, &userlock.EnvironmentId, &userlock.Comment,&userlock.Firstname,&userlock.Lastname)
 		if err != nil {
 			log.Fatal(err)
 		}
