@@ -6,7 +6,7 @@ import (
 )
 
 func GetAllUsers() *[]models.User {
-	rows, err := db.Query(`SELECT "Id", "Username" FROM "Users"`)
+	rows, err := db.Query("SELECT Id, Username,FirstName,LastName FROM Users")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -14,7 +14,7 @@ func GetAllUsers() *[]models.User {
 	users := make([]models.User, 0)
 	for rows.Next() {
 		user := models.NewUser()
-		err := rows.Scan(&user.Id, &user.Username)
+		err := rows.Scan(&user.Id, &user.Username,&user.FirstName,&user.LastName)
 		if err != nil {
 			log.Fatal(err)
 		}

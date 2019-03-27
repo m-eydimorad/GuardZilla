@@ -2,13 +2,15 @@ package main
 
 import (
 	"./handlers"
+	"./repositories"
 	"github.com/gorilla/mux"
 	"net/http"
-	"./repositories"
 )
+
 const (
-	connStr string= "user=postgres password=123 dbname=GuardZilla sslmode=disable"
+	connStr string = "user=postgres password=123 dbname=GuardZilla sslmode=disable"
 )
+
 func main() {
 	repositories.InitDB(connStr)
 	router := mux.NewRouter()
