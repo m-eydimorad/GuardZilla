@@ -117,6 +117,7 @@ class Login extends React.Component {
         }
         else {
             this.getUserByUserName(user);
+            this.props.navigation.navigate('RequestForLock');
         }
     }
 }
