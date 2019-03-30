@@ -20,7 +20,7 @@ class Login extends React.Component {
     }
 
     render() {
-       // const {navigate} = this.props.navigation;
+        const {navigate} = this.props.navigation;
         return (
             <Container>
                 <MyHeader title="صفحه ورود" />
@@ -79,9 +79,8 @@ class Login extends React.Component {
 
     getUserByUserName(user) {
         fetch('http://sm.isc.iranet.net/users/' + user)
-            .then((response) => response.text())
+            .then((response) => response.json())
             .then(responseJson => {
-               
                 this.setState({
                     userName: responseJson.Username,
                     userId: responseJson.Id,

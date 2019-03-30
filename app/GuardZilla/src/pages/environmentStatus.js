@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Container, Content, Item, Label, Input, Icon, Button, Root, Toast, Footer,List, ListItem,FooterTab } from 'native-base'
 import MyHeader from '../../src/components/myHeader/myHeader'
-
+import MyFooter from '../../src/components/myFooter/myFooter';
 
 class EnvironmentStatus extends Component {
     constructor (props){
@@ -50,19 +50,7 @@ class EnvironmentStatus extends Component {
                         </List>
                     </Content>
                 </Container>
-                <Footer style={{height:35}}>
-                    <FooterTab style={{backgroundColor:"#0ff"}}>
-                        <Button onPress={() => navigate('Home')}>
-                            <Icon style={{color:'#000'}} name="home" />
-                        </Button>
-                        <Button onPress={() => navigate('RequestForLock')}>
-                            <Icon style={{color:'#000'}} name="lock" />
-                        </Button>
-                        <Button onPress={() => navigate('Help')}>>
-                            <Icon style={{color:'#000'}} name="help-circle" />
-                        </Button>
-                    </FooterTab>
-                </Footer>
+               <MyFooter />
             </Root>
         );
     }
