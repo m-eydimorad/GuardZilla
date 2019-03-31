@@ -51,7 +51,6 @@ class RequestForLock extends React.Component {
 
     toggleSwitch = (value) => {
         this.setState({ switchValue: value });
-        console.log('toggle');
     }
 
 
@@ -103,8 +102,7 @@ class RequestForLock extends React.Component {
             environmentid: 1,
             comment: this.state.comment
         })
-        console.log('userunlock'+requestModel);
-        fetch('http://sm.isc.iranet.net/userlock/', {
+        fetch('http://sm.isc.iranet.net/userlock/' + this.state.userId + '/1', {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
@@ -131,8 +129,6 @@ class RequestForLock extends React.Component {
             EnvironmentId: 1,
             Comment: this.state.comment
         })
-        console.log('userlock'+requestModel);
-        
         fetch('http://sm.isc.iranet.net/userlock', {
             method: 'POST',
             headers: {
@@ -147,7 +143,7 @@ class RequestForLock extends React.Component {
                     text: "محیط تست قفل شد",
                     type: 'success',
                     textStyle: { fontFamily: "IRANSansMobile", fontSize: 12 },
-                    duration: 3000
+                    duration: 5000
                 })
             })
             .catch((err) => { console.log(err); });
@@ -180,10 +176,22 @@ class RequestForLock extends React.Component {
         var envStatus = this.state.switchValue;
         if (envStatus == true) {
             this.userLock();
+            Toast.show({
+                text: "محیط تست قفل شد",
+                type: 'success',
+                textStyle: { fontFamily: "IRANSansMobile", fontSize: 12 },
+                duration: 5000
+            })
 
         }
         else if (envStatus == false) {
             this.userUnLock();
+            Toast.show({
+                text: "محیط تست باز شد",
+                type: 'success',
+                textStyle: { fontFamily: "IRANSansMobile", fontSize: 12 },
+                duration: 3000
+            })
         }
     }
 }
