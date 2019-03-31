@@ -24,12 +24,6 @@ class RequestForLock extends React.Component {
             })
         });
 
-        AsyncStorage.getItem('userId', (error, result) => {
-            let userId = JSON.parse(result);
-            this.setState({
-                userId: userId,
-            })
-        });
 
         AsyncStorage.getItem('firstName', (error, result) => {
             let firstName = JSON.parse(result);
@@ -43,18 +37,26 @@ class RequestForLock extends React.Component {
             this.setState({
                 lastName: lastName,
             })
-        });
 
-        this.getUserLockByUserIdEnvId();
+        });
+        AsyncStorage.getItem('userId', (error, result) => {
+            let userId = JSON.parse(result);
+            this.setState({
+                userId: userId,
+            })
+            this.getUserLockByUserIdEnvId(this.state.userId);
+        });
 
     }
 
     toggleSwitch = (value) => {
-        this.setState({ switchValue: value })
+        this.setState({ switchValue: value });
+        console.log('toggle');
     }
 
+
     render() {
-        
+
         return (
             <Root>
                 <Container>
@@ -101,10 +103,11 @@ class RequestForLock extends React.Component {
             environmentid: 1,
             comment: this.state.comment
         })
-        fetch('http://sm.isc.iranet.net/userlock/' + this.state.userId + '/1 ', {
+        console.log('userunlock'+requestModel);
+        fetch('http://sm.isc.iranet.net/userlock/', {
             method: 'DELETE',
             headers: {
-                Accept: 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: requestModel
@@ -128,7 +131,9 @@ class RequestForLock extends React.Component {
             EnvironmentId: 1,
             Comment: this.state.comment
         })
-        fetch('http://localhost:8099/userlock', {
+        console.log('userlock'+requestModel);
+        
+        fetch('http://sm.isc.iranet.net/userlock', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -148,22 +153,13 @@ class RequestForLock extends React.Component {
             .catch((err) => { console.log(err); });
     }
 
-    getUserLockByUserIdEnvId() {
-        var url = 'http://sm.isc.iranet.net/userlock/' + this.state.userId + '/1';
-
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            // body: requestModel
-        })
+    getUserLockByUserIdEnvId(userId) {
+        fetch('http://sm.isc.iranet.net/userlock/' + userId + '/1')
             .then((response) => response.json())
             .then(responseJson => {
                 if (responseJson != null && responseJson != "") {
                     this.setState({
-                        comment: responseJson.FirstName,
+                        comment: responseJson.Comment,
                         switchValue: true,
                     })
                 }
@@ -188,12 +184,6 @@ class RequestForLock extends React.Component {
         }
         else if (envStatus == false) {
             this.userUnLock();
-            Toast.show({
-                text: "محیط تست باز شد",
-                type: 'success',
-                textStyle: { fontFamily: "IRANSansMobile", fontSize: 12 },
-                duration: 3000
-            })
         }
     }
 }
