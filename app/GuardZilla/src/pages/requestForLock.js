@@ -102,7 +102,7 @@ class RequestForLock extends React.Component {
             environmentid: 1,
             comment: this.state.comment
         })
-        fetch('http://sm.isc.iranet.net/userlock/' + this.state.userId + '/1', {
+        fetch('http://mis26/userlock/' + this.state.userId + '/1', {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
@@ -129,7 +129,7 @@ class RequestForLock extends React.Component {
             EnvironmentId: 1,
             Comment: this.state.comment
         })
-        fetch('http://sm.isc.iranet.net/userlock', {
+        fetch('http://mis26/userlock', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -150,7 +150,7 @@ class RequestForLock extends React.Component {
     }
 
     getUserLockByUserIdEnvId(userId) {
-        fetch('http://sm.isc.iranet.net/userlock/' + userId + '/1')
+        fetch('http://mis26/userlock/' + userId + '/1')
             .then((response) => response.json())
             .then(responseJson => {
                 if (responseJson != null && responseJson != "") {
