@@ -108,8 +108,7 @@ class RequestForLock extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-            },
-            body: requestModel
+            }
         })
             .then((response) => JSON.stringify(response.json()))
             .then((responseData) => {
