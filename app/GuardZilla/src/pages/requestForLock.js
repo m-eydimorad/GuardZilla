@@ -4,6 +4,7 @@ import { Platform, StyleSheet, Text, View, Image, Switch } from 'react-native';
 import styles from '../../styles/appStyles';
 import { Container, Content, Item, Label, Input, Icon, Button, Root, Toast, Textarea } from 'native-base'
 import MyHeader from '../../src/components/myHeader/myHeader'
+import GuardZillaCommon from './common';
 
 class RequestForLock extends React.Component {
     constructor(props) {
@@ -102,7 +103,7 @@ class RequestForLock extends React.Component {
             environmentid: 1,
             comment: this.state.comment
         })
-        fetch('http://mis26/userlock/' + this.state.userId + '/1', {
+        fetch(GuardZillaCommon.ApiPath + '/userlock/' + this.state.userId + '/1', {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
@@ -129,7 +130,7 @@ class RequestForLock extends React.Component {
             EnvironmentId: 1,
             Comment: this.state.comment
         })
-        fetch('http://mis26/userlock', {
+        fetch(GuardZillaCommon.ApiPath + '/userlock', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -150,7 +151,7 @@ class RequestForLock extends React.Component {
     }
 
     getUserLockByUserIdEnvId(userId) {
-        fetch('http://mis26/userlock/' + userId + '/1')
+        fetch(GuardZillaCommon.ApiPath + '/userlock/' + userId + '/1')
             .then((response) => response.json())
             .then(responseJson => {
                 if (responseJson != null && responseJson != "") {

@@ -5,6 +5,8 @@ import styles from '../../styles/appStyles';
 import { Container, Content, Item, Label, Input, Icon, Button, Root, Toast } from 'native-base'
 import MyHeader from '../../src/components/myHeader/myHeader'
 import RequestForLock from '../../src/pages/requestForLock'
+import GuardZillaCommon from './common';
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -29,22 +31,25 @@ class Login extends React.Component {
         //     //     userName: userName,
         //     // })
         // });
+
     }
 
-    componentWillMount(){
+    componentWillMount() {
         AsyncStorage.getItem('userName', (error, result) => {
-            let userName = JSON.parse(result);            
+            let userName = JSON.parse(result);
             this.setState({ isLoggedIn: userName != null });
         });
+
+
     }
 
     render() {
         const { navigate } = this.props.navigation;
 
         if (this.state.isLoggedIn) {
-            return <RequestForLock/>
-          }
-        else           
+            return <RequestForLock />
+        }
+        else
             return (
                 <Root>
                     <Container>
@@ -104,11 +109,11 @@ class Login extends React.Component {
 
 
     getUserByUserName(user) {
-        fetch('http://mis26/users/' + user)
+        fetch(GuardZillaCommon.ApiPath + '/users/' + user)
             .then((response) => response.json())
             .then(responseJson => {
                 if (responseJson != null && responseJson != "") {
-                   
+
                     this.setState({
                         userName: responseJson.Username,
                         userId: responseJson.Id,
@@ -120,10 +125,10 @@ class Login extends React.Component {
                     AsyncStorage.setItem('userName', JSON.stringify(this.state.userName));
                     AsyncStorage.setItem('firstName', JSON.stringify(this.state.firstName));
                     AsyncStorage.setItem('lastName', JSON.stringify(this.state.lastName));
-            this.props.navigation.navigate('RequestForLock');
-                    
+                    this.props.navigation.navigate('RequestForLock');
+
                 } else {
-                   alert('نام کاربری شما مجاز نیست');
+                    alert('نام کاربری شما مجاز نیست');
                 }
             })
             .catch((error) => {
