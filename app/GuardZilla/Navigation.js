@@ -1,17 +1,24 @@
-import { createStackNavigator } from 'react-navigation';
-import app from './App';
-import environmentStatus from './src/components/environmentStatus/environmentStatus';
-import requestForDemo from './src/components/requestForDemo/requestForDemo';
-const Navigation = createStackNavigator({
-    app: { screen: app },
-    environmentStatus: { screen: environmentStatus },
-    requestForDemo: { screen: requestForDemo },
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+import login from './src/pages/login';
+import environmentStatus from './src/pages/environmentStatus';
+import requestForLock from './src/pages/requestForLock';
+
+const MainNavigator = createStackNavigator({
+    Login: { screen: login },
+    RequestForLock: { screen: requestForLock },
+    Home:{screen:environmentStatus},
+    //Help: { screen: help }
 },
     {
         headerMode: 'none'
-    }
-)
+    })
 
 
-export default Navigation
+
+
+
+
+const App = createAppContainer(MainNavigator);
+
+export default App; 
